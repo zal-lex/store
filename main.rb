@@ -17,6 +17,25 @@ require_relative 'lib/product'
 require_relative 'lib/book'
 require_relative 'lib/movie'
 
-leon = Movie.new(title: 'Леон', cost: 290, in_stock: 5)
+films_paths = Dir["#{__dir__}/data/movies/*"]
 
-puts "Фильм #{leon.title} стоит #{leon.cost} руб."
+films = films_paths.map do |path|
+  Movie.from_file(path)
+end
+
+books_paths = Dir["#{__dir__}/data/books/*"]
+
+books = books_paths.map do |path|
+  Book.from_file(path)
+end
+
+# Выведем результат на экран
+p films
+p books
+
+# Пытаемся вызвать метод from_file у класса Product и ловим ошибку
+begin
+  Product.from_file(__dir__ + '/data/movies/1.txt')
+rescue NotImplementedError
+  puts 'Метод класса Product.from_file не реализован'
+end
