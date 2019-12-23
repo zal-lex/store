@@ -25,10 +25,6 @@ class ProductCollection
     self.new(products)
   end
 
-  def to_a
-    @products
-  end
-
   def sort!(params)
     case params[:by]
     when :title
@@ -42,6 +38,10 @@ class ProductCollection
     @products.reverse! if params[:order] == :asc
 
     self
+  end
+
+  def to_a
+    @products
   end
 
   def to_s
