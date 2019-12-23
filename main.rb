@@ -44,14 +44,15 @@ until user_choice == 0
   end
 
   unless user_choice == 0
-    # Уменьшаем количество выбанного товара на складе
-    collection.product_by_index(user_choice).amount -= 1
     # Вносим выбранный товар в список покупок
     purchases << collection.product_by_index(user_choice)
     # Прибавляем стоимость товара к общей стоимости товаров в корзине
     total_cost += collection.product_by_index(user_choice).price
     puts "\nВы выбрали: #{collection.product_by_index(user_choice)}"
     puts "\nВсего товаров на сумму: #{total_cost} руб."
+    # С помощью метода stock_update уменьшаем количество товара и, если его
+    # количество стало равно 0, удаляем товар и collection
+    collection.stock_update(user_choice)
   end
 end
 
