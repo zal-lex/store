@@ -43,4 +43,12 @@ class ProductCollection
 
     self
   end
+
+  def to_s
+    result = ''
+    @products.each.with_index(1) do |product, ind|
+      result += "#{ind}. #{product}\n"
+    end
+    "#{result}"
+  end
 end

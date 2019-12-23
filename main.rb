@@ -23,14 +23,14 @@ collection = ProductCollection.from_dir("#{__dir__}/data")
 collection.sort!(by: :title, order: :asc)
 
 # Метод для проверки пользовательского ввода
-def check_input(user_choice, products)
+def check_input(products)
   until (0..products.size).include?(user_choice = STDIN.gets.to_i)
     puts "Введите число от '0' до '#{products.size}': "
   end
 
   if products[user_choice-1].amount == 0
     puts 'К сожалению этого товара не осталось на складе. Выберите пожалуйста другой.'
-    check_input(user_choice, products)
+    check_input(products)
   else
     return user_choice
   end
@@ -48,13 +48,11 @@ until user_choice == 0
   puts "\nЧто хотите купить:"
   puts
   # Выводим список товаров
-  collection.to_a.each.with_index(1) do |product, index|
-    puts "#{index}. #{product}"
-  end
+  puts collection
   puts '0. Выход'
   puts
   # Вызываем метод проверки ввода пользователя
-  user_choice = check_input(user_choice, collection.to_a)
+  user_choice = check_input(collection.to_a)
 
   unless user_choice == 0
     # Уменьшаем количество выбанного товара на складе
