@@ -54,11 +54,6 @@ class ProductCollection
   end
 
   def to_s
-    # result = ''
-    # @products.each.with_index(1) do |product, ind|
-    #   result += "#{ind}. #{product}\n"
-    # end
-    # "#{result}"
     @products.map.with_index(1) {|product, index| "#{index}. #{product}"}.join("\n")
   end
 end
