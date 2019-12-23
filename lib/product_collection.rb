@@ -45,8 +45,8 @@ class ProductCollection
   end
 
   def stock_update(user_choice)
-    @products[user_choice - 1].amount -= 1
-    @products.delete_at(user_choice - 1) if @products[user_choice - 1].amount == 0
+    product_by_index(user_choice).amount -= 1
+    @products.delete_at(user_choice - 1) if product_by_index(user_choice).amount == 0
   end
 
   def to_a
