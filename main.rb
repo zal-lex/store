@@ -39,8 +39,8 @@ until user_choice == 0
   puts '0. Выход'
   puts
   # Спрашиваем у пользователя, что он хочет купить
-  until (0..products.size).include?(user_choice = STDIN.gets.to_i)
-    puts "Введите число от '0' до '#{products.size}': "
+  until (0..collection.to_a.size).include?(user_choice = STDIN.gets.to_i)
+    puts "Введите число от '0' до '#{collection.to_a.size}': "
   end
 
   unless user_choice == 0
