@@ -22,19 +22,6 @@ collection = ProductCollection.from_dir("#{__dir__}/data")
 
 collection.sort!(by: :title, order: :asc)
 
-# Метод для проверки пользовательского ввода
-def check_input(products)
-  until (0..products.size).include?(user_choice = STDIN.gets.to_i)
-    puts "Введите число от '0' до '#{products.size}': "
-  end
-
-  if products[user_choice-1].amount == 0
-    puts 'К сожалению этого товара не осталось на складе. Выберите пожалуйста другой.'
-    check_input(products)
-  else
-    return user_choice
-  end
-end
 # В массиве purchases как в корзине магазина будем хранить покупки
 purchases = []
 # Заведём переменную с заведомо неверным значением, чтобы цикл начал выполняться
@@ -51,8 +38,10 @@ until user_choice == 0
   puts collection
   puts '0. Выход'
   puts
-  # Вызываем метод проверки ввода пользователя
-  user_choice = check_input(collection.to_a)
+  # Спрашиваем у пользователя, что он хочет купить
+  until (0..products.size).include?(user_choice = STDIN.gets.to_i)
+    puts "Введите число от '0' до '#{products.size}': "
+  end
 
   unless user_choice == 0
     # Уменьшаем количество выбанного товара на складе
