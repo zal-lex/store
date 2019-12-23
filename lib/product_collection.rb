@@ -25,6 +25,10 @@ class ProductCollection
     self.new(products)
   end
 
+  def product_by_index(user_choice)
+    @products[user_choice-1]
+  end
+
   def sort!(params)
     case params[:by]
     when :title

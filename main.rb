@@ -45,12 +45,12 @@ until user_choice == 0
 
   unless user_choice == 0
     # Уменьшаем количество выбанного товара на складе
-    collection.to_a[user_choice-1].amount -= 1
+    collection.product_by_index(user_choice).amount -= 1
     # Вносим выбранный товар в список покупок
-    purchases << collection.to_a[user_choice-1]
+    purchases << collection.product_by_index(user_choice)
     # Прибавляем стоимость товара к общей стоимости товаров в корзине
-    total_cost += collection.to_a[user_choice-1].price
-    puts "\nВы выбрали: #{collection.to_a[user_choice-1]}"
+    total_cost += collection.product_by_index(user_choice).price
+    puts "\nВы выбрали: #{collection.product_by_index(user_choice)}"
     puts "\nВсего товаров на сумму: #{total_cost} руб."
   end
 end
